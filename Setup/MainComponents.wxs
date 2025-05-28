@@ -1,0 +1,16 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    <ComponentGroup Id="MainComponents" Directory="INSTALLDIR" >
+      <Files Include="ToInstall\Dlls\*.dll" Directory="INSTALLDIR" />
+      <Files Include="ToInstall\XMLs\*.xml" Directory="INSTALLDIR" />
+      <Component>
+        <File Source="ToInstall\WinFormSharePoint.exe.config" />
+      </Component>
+      <Component>
+        <File Source="ToInstall\WinFormSharePoint.exe" KeyPath="yes">
+          <Shortcut Directory="DesktopFolder" Name="WinFormSharePoint" WorkingDirectory="INSTALLDIR" Icon="ShareVisual.ico" IconIndex="0" Advertise="yes" />
+        </File>
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>
