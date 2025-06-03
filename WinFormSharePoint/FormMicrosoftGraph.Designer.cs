@@ -92,7 +92,7 @@
       this.btnSignOut.UseVisualStyleBackColor = true;
       this.btnSignOut.Click += new System.EventHandler(this.btnSignOut_Click);
       // 
-      // Form1
+      // FormMicrosoftGraph
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -103,8 +103,8 @@
       this.Controls.Add(this.labResultText);
       this.Controls.Add(this.edTokenInfoText);
       this.Controls.Add(this.edResultText);
-      this.Name = "Form1";
-      this.Text = "Form1";
+      this.Name = "FormMicrosoftGraph";
+      this.Text = "WinFormSharePoint MS Grph sample";
       this.ResumeLayout(false);
       this.PerformLayout();
 

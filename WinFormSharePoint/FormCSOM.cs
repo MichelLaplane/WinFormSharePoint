@@ -1,6 +1,8 @@
 ﻿using Microsoft.Identity.Client;
 using Microsoft.Office.SharePoint.Tools;
 using Microsoft.SharePoint.Client;
+using Microsoft.Win32;
+
 //using PnP.Core.Model.SharePoint;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,8 @@ namespace WinFormSharePoint
   {
   public partial class FormCSOM : System.Windows.Forms.Form
     {
+    RegistryKey regKey = null, regCompanyKey, regApplicationKey, regFieldKey;
+    string strValue;
     public FormCSOM()
       {
       InitializeComponent();
@@ -25,13 +29,37 @@ namespace WinFormSharePoint
 
     void InitializeControl()
       {
-      edClientApplicationID.Text = "";
-      edSharePointTenantID.Text = "";
-      edSharePointTenantUrl.Text = "";
-      edSharePointSiteUrl.Text = "";
-      edRootFolder.Text = "Documents partages";
-      //edParentLibrary.Text = "Documents";
-      edParentFolderName.Text = "";
+      regKey = Registry.CurrentUser;
+      if ((regCompanyKey = regKey.CreateSubKey("Software\\ShareVisual")) != null)
+        {
+        if ((regApplicationKey = regCompanyKey.CreateSubKey("WinFormSharePoint")) != null)
+          {
+          if ((strValue = (String)regApplicationKey.GetValue("ClientApplicationId")) != null)
+            {
+            edClientApplicationID.Text = strValue;
+            }
+          if ((strValue = (String)regApplicationKey.GetValue("TenantId")) != null)
+            {
+            edSharePointTenantID.Text = strValue;
+            }
+          if ((strValue = (String)regApplicationKey.GetValue("TenantUrl")) != null)
+            {
+            edSharePointTenantUrl.Text = strValue;
+            }
+          if ((strValue = (String)regApplicationKey.GetValue("SiteUrl")) != null)
+            {
+            edSharePointSiteUrl.Text = strValue;
+            }
+          if ((strValue = (String)regApplicationKey.GetValue("RootFolder")) != null)
+            {
+            edRootFolder.Text = strValue;
+            }
+          if ((strValue = (String)regApplicationKey.GetValue("ParentFolder")) != null)
+            {
+            edParentFolderName.Text = strValue;
+            }
+          }
+        }
       }
 
     private async void btnSharePointFolders_Click(object sender, EventArgs e)
@@ -87,6 +115,23 @@ namespace WinFormSharePoint
           }
         }
       edResponse.Text += "\r\nAddFolderToLibrary leave";
+      }
+
+    private void FormCSOM_FormClosing(object sender, FormClosingEventArgs e)
+      {
+      regKey = Registry.CurrentUser;
+      if ((regCompanyKey = regKey.CreateSubKey("Software\\ShareVisual")) != null)
+        {
+        if ((regApplicationKey = regCompanyKey.CreateSubKey("WinFormSharePoint")) != null)
+          {
+          regApplicationKey.SetValue("ClientApplicationId", edClientApplicationID.Text);
+          regApplicationKey.SetValue("TenantId", edSharePointTenantID.Text);
+          regApplicationKey.SetValue("TenantUrl", edSharePointTenantUrl.Text);
+          regApplicationKey.SetValue("SiteUrl", edSharePointSiteUrl.Text);
+          regApplicationKey.SetValue("RootFolder", edRootFolder.Text);
+          regApplicationKey.SetValue("ParentFolder", edParentFolderName.Text);
+          }
+        }
       }
 
     async Task<string> AcquireTokenAsync(Uri siteUrl)
