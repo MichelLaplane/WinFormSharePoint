@@ -133,7 +133,7 @@ Click on “Overview” to retrieve all needed information:
 >
    ![LoginMsGraphDialog](https://github.com/MichelLaplane/WinFormSharePoint/blob/master/WinFormSharePoint/Readme/LoginMsGraphDialog.png)
    
-	>Connect and the result is displayed
+>Connect and the result is displayed
 
-	![MsGraphResult](https://github.com/MichelLaplane/WinFormSharePoint/blob/master/WinFormSharePoint/Readme/MsGraphResult.png)
+![MsGraphResult](https://github.com/MichelLaplane/WinFormSharePoint/blob/master/WinFormSharePoint/Readme/MsGraphResult.png)
 
