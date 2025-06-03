@@ -135,3 +135,5 @@ Click on “Overview” to retrieve all needed information:
    
 	>Connect and the result is displayed
 
+	![MsGraphResult](https://github.com/MichelLaplane/WinFormSharePoint/blob/master/WinFormSharePoint/Readme/MsGraphResult.png)
+
