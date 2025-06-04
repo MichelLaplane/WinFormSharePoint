@@ -1,15 +1,31 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
   <Fragment>
     <ComponentGroup Id="MainComponents" Directory="INSTALLDIR" >
-      <Files Include="ToInstall\Dlls\*.dll" Directory="INSTALLDIR" />
-      <Files Include="ToInstall\XMLs\*.xml" Directory="INSTALLDIR" />
+      <Files Include="ToInstall\Dlls\*.dll" Directory="INSTALLDIR">
+      </Files>
+      <Files Include="ToInstall\XMLs\*.xml" Directory="INSTALLDIR">
+      </Files>
       <Component>
-        <File Source="ToInstall\WinFormSharePoint.exe.config" />
+        <File Source="ToInstall\WinFormSharePoint.exe.config">
+        </File>
       </Component>
       <Component>
-        <File Source="ToInstall\WinFormSharePoint.exe" KeyPath="yes">
+        <File Id="Un" Source="ToInstall\WinFormSharePoint.exe" KeyPath="yes">
           <Shortcut Directory="DesktopFolder" Name="WinFormSharePoint" WorkingDirectory="INSTALLDIR" Icon="ShareVisual.ico" IconIndex="0" Advertise="yes" />
         </File>
+      </Component>
+      <Component Id="RegistryEntries" Directory="TARGETDIR">
+        <RegistryKey Root="HKCU" Key="Software\ShareVisual\!(bind.Property.ProductName)">
+          <RegistryValue Name="ClientApplicationId" Value="" Type="string" />
+          <RegistryValue Name="ParentFolder" Value="" Type="string" />
+          <RegistryValue Name="RootFolder" Value="" Type="string" />
+          <RegistryValue Name="SiteUrl" Value="" Type="string" />
+          <RegistryValue Name="TenantId" Value="" Type="string" />
+          <RegistryValue Name="TenantUrl" Value="" Type="string" />
+        </RegistryKey>
+      </Component>
+      <Component Id="DeleteFile" Guid="02466926-0F22-4016-9937-9BA2E6AB90AD">
+        <RemoveFile On="uninstall" Name="*.*"/>
       </Component>
     </ComponentGroup>
   </Fragment>

@@ -140,7 +140,7 @@ namespace WinFormSharePoint
       var clientId = edClientApplicationID.Text;
       var tenantId = edSharePointTenantID.Text;
       var authority = $"https://login.microsoftonline.com/{tenantId}/";
-      var redirectUri = "";
+      var redirectUri = "http://localhost";
 
       string resource = $"{siteUrl.Scheme}://{siteUrl.Authority}";
 
